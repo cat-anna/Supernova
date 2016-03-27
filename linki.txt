@@ -1,0 +1,10 @@
+http://forum.osdev.org/viewtopic.php?f=15&t=15713
+http://forum.osdev.org/viewtopic.php?f=15&t=16084
+
+http://wiki.osdev.org/Main_Page
+http://www.osdever.net/FreeVGA/vga/colorreg.htm#note
+http://asm.inightmare.org/opcodelst/
+http://www.delorie.com/djgpp/doc/ug/graphics/vesa.html
+http://siyobik.info/main/reference
+http://www.gamedev.net/page/resources/_/technical/graphics-programming-and-theory/graphics-programming-black-book-r1698
+

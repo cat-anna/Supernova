@@ -1,0 +1,59 @@
+memory map below 1Mb
+
+PhysAddr:		Descr:
+0x00000 - 0x00FFF	Bios IVT, BDA, bootsector & Loader stack 
+0x01000 - 0x01FFF	data from Loader
+0x02000 - 0x02FFF	Supernova Loader				--KernelIddle stack
+0x03000 - 0x03FFF	Reserved for Loader grow space	--KernelIddle stack3
+0x04000 - 0x04FFF
+0x05000 - 0x05FFF	--CPU idle stack r0&r3
+0x06000 - 0x06FFF
+0x07000 - 0x07FFF	Kernel stack
+	0x0000-0x7BFF temp area
+	0x7c00-0x7DFF bootsector
+	0x7E00-0x7FFF free space
+0x08000 - 0x08FFF
+0x09000 - 0x09FFF
+0x0A000 - 0x0AFFF	kernelpagedir
+0x0B000 - 0x0BFFF	lowpagetable
+0x0C000 - 0x0CFFF	
+0x0D000 - 0x0DFFF	
+0x0E000 - 0x0EFFF
+0x0F000 - 0x0FFFF	
+
+0x10000 - ...		
+		Kernel code	(128 kb)
+...     - 0x2FFFF
+
+0x030000 - 0x031FFF [ 8kb] contains: 
+	0x030000 - 0x03007F [ 128b] GDT, Segment Descriptors
+	0x030080 - 0x0308FF [2176b] IDT, Interrupts Vector Table
+	0x030900 - 0x030FFF [1792b]	Shared Libs Table
+	0x031000 - 0x0317FF [2048b] Drivers Table
+	0x031800 - 0x031FFF [2048b] Devices Table
+0x032000 - 0x031FFF	[ 8kb] Processes Table
+0x034000 - 0x035FFF [ 8kb] Threads Table
+0x036000 - 0x036FFF	[ 4kb] Device manager ipc buffer
+0x037000 - ?		?
+
+
+data from Loader:
+0x01000 - 0x01FFF			this struct is declared in Loader.h
+[  0]dword					Loaded files count 
+[  4]LoaderFile[10x36]		Data of every loaded file (LoaderFile is declared in loader16.asm)
+[16C]dword					Memory map entries count
+[170]MemMapEntry[10x24]		Table of Memory map entries (MemMapEntry is declared in memmgr.c)
+[260]dword					Boot partition id
+
+Process memory map
+
+0x00000000 - 0x01000000 	empty area(0-16mb)
+0x01000000 - 0x40000000		code & heap area(16mb-1gb)
+0x40000000 - 0x80000000		stacks space(1gb-2gb)
+..
+0xB0000000 - 0xB0000FFF		ipc
+0xB0001000 - 0xB0001FFF		stack
+0xB0002000 - 0xB0002FFF		stack r3
+0xB0003000 - 0xB0003FFF		sys data space(proc_heap_t, argc && argcv)
+
+

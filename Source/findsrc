@@ -1,0 +1,9 @@
+#!/bin/bash
+ls -R1 . |  while read l; do 
+	case $l in 
+		*:) d=${l%:};; 
+		"") d=;; 
+		*.c | *.h | *.asm | *.ld | *makefile | *.mk | *.inc | *.ini | *.lua) echo "$d/$l";; 
+	esac;
+done
+ 
